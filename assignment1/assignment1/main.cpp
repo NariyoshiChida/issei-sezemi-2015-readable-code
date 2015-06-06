@@ -28,7 +28,7 @@ void initFile(fstream &data_file){
     }
 }
 
-void printIdFiles(ifstream &input_file,string &filename,int ID){
+void printRecipeWithCookpadsURL(ifstream &input_file,string &filename){
 
   input_file.open(filename.c_str());
 
@@ -40,9 +40,7 @@ void printIdFiles(ifstream &input_file,string &filename,int ID){
   int identifier = 1;
   string words;
   while( !( input_file >> words ).fail() ){
-    if( ID == PRINT_ALL || ( ID == identifier ) ) {
-      cout << identifier << ": " << words << endl;
-    }
+    cout << words << " http://cookpad.com/search/" << words << endl;
     ++identifier;
   }
   
@@ -57,15 +55,11 @@ int main(int argc, const char * argv[]) {
     ofstream recipe_file;
     insertWords(recipe_file);
 
-    assert( argc >= 2 ); 
-
+    assert( argc >= 2 );
     string filename = string(argv[1]);
 
-    int ID = PRINT_ALL;
-    if( argc >= 3 ) ID = atoi(argv[2]);
-
     ifstream input_file;
-    printIdFiles(input_file,filename,ID);
+    printRecipeWithCookpadsURL(input_file,filename);
     
     recipe_file.close();
     data_file.close();

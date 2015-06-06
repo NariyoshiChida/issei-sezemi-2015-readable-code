@@ -14,3 +14,22 @@
 
 $ g++ main.cpp
 $ ./a.out recipe-data.txt
+
+仕様6:
+以下のコマンドをターミナル上で行い実行する
+
+$ g++ main.cpp
+$ ./a.out recipe-data.txt
+
+or
+
+$ g++ main.cpp
+$ ./a.out recipe-data.txt x
+
+ただし、xは１以上３以下の任意の整数
+
+仕様7:
+以下のコマンドをターミナル上で行い実行する
+
+$ g++ main.cpp
+$ ./a.out recipe-data.txt
