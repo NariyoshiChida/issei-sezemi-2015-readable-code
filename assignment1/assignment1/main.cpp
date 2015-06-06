@@ -28,7 +28,12 @@ void initFile(fstream &data_file){
     }
 }
 
-
+/*
+  curl コマンドを実行して目的のレシピを抽出する
+  http://cookpad.com/search/ + (目的のレシピ)　とすることで目的のレシピの一覧が表示される
+  curl で先ほどの URL のソースコードを取得し、その中から"http://cookpad.com/recipe/"で始まるものを抽出
+  そこで抽出されたコードこそが目的のURLとなる
+ */
 string searchURL(string word){
   string url = "http://cookpad.com/search/" + word;
 
