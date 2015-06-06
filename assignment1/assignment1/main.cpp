@@ -28,6 +28,41 @@ void initFile(fstream &data_file){
     }
 }
 
+
+string searchURL(string word){
+  string url = "http://cookpad.com/search/" + word;
+
+  FILE *f = popen(("curl -s -k \"" + url + "\"").c_str(), "r");
+
+  if (f == NULL) {
+    perror("error!");
+  }
+  char buf[1024];
+  string text;
+  while (!feof(f)) {
+    if (fgets(buf, 1024, f) == NULL) break;
+    text += (string)(buf);
+  }
+
+#ifdef _MSC_VER
+  _pclose(f);
+#else
+  pclose(f);
+#endif
+  
+  int sp = text.find("http://cookpad.com/recipe/");
+  assert( sp != string::npos );
+  string target = "";
+  int cur = sp;
+  while( cur < text.size() && text[cur] != '"' ) {
+    target += text[cur];
+    ++cur;
+  }
+
+  return target;
+}
+
+
 void printRecipeWithCookpadsURL(ifstream &input_file,string &filename){
 
   input_file.open(filename.c_str());
@@ -40,7 +75,7 @@ void printRecipeWithCookpadsURL(ifstream &input_file,string &filename){
   int identifier = 1;
   string words;
   while( !( input_file >> words ).fail() ){
-    cout << words << " http://cookpad.com/search/" << words << endl;
+    cout << words << " " << searchURL(words) << endl;
     ++identifier;
   }
   
