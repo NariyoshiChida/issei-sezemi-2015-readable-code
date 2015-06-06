@@ -20,11 +20,11 @@ https://github.com/NariyoshiChida/issei-sezemi-2015-readable-code/blob/master/as
 
 
 * ファイルのオープンとクローズが同じ関数内で行われていて安心してコードを読める
-
+https://github.com/NariyoshiChida/issei-sezemi-2015-readable-code/blob/master/assignment1/assignment1/main.cpp#L90-L108
 
 
 * argv が const で指定されてあり、途中でファイル名等が変更される心配がなく安心してコードを読める
-
+https://github.com/NariyoshiChida/issei-sezemi-2015-readable-code/blob/master/assignment1/assignment1/main.cpp#L90
 
 
 
