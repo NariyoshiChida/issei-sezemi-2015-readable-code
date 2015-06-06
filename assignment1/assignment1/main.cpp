@@ -7,10 +7,23 @@
 //
 
 #include <iostream>
+#include <fstream>
 using namespace std;
 
 int main(int argc, const char * argv[]) {
-
-    cout<<"オムライス"<<endl;
-    return 0;
+    
+    fstream data_file;
+    data_file.open("/Users/issei/issei-sezemi-2015-readable-code/recipe-data.txt");
+    
+    if (!data_file) {
+        cout<<"ファイルをオープンできません"<<endl;
+        exit(0);
+    }
+    
+    ofstream recipe_file;
+    recipe_file.open("/Users/issei/issei-sezemi-2015-readable-code/recipe-data.txt");
+    recipe_file<<"オムライス"<<endl;
+    
+    recipe_file.close();
+    data_file.close();
 }
