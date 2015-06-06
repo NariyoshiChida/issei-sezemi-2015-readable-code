@@ -8,6 +8,8 @@
 
 #include <bits/stdc++.h>
 
+#define PRINT_ALL -1
+
 using namespace std;
 
 void insertWords(ofstream &recipe_file){
@@ -26,7 +28,7 @@ void initFile(fstream &data_file){
     }
 }
 
-void addIdentifierToWords(ifstream &input_file,string &filename){
+void printIdFiles(ifstream &input_file,string &filename,int ID){
 
   input_file.open(filename.c_str());
 
@@ -38,7 +40,9 @@ void addIdentifierToWords(ifstream &input_file,string &filename){
   int identifier = 1;
   string words;
   while( !( input_file >> words ).fail() ){
-    cout << identifier << ": " << words << endl;
+    if( ID == PRINT_ALL || ( ID == identifier ) ) {
+      cout << identifier << ": " << words << endl;
+    }
     ++identifier;
   }
   
@@ -54,9 +58,14 @@ int main(int argc, const char * argv[]) {
     insertWords(recipe_file);
 
     assert( argc >= 2 ); 
+
     string filename = string(argv[1]);
+
+    int ID = PRINT_ALL;
+    if( argc >= 3 ) ID = atoi(argv[2]);
+
     ifstream input_file;
-    addIdentifierToWords(input_file,filename);
+    printIdFiles(input_file,filename,ID);
     
     recipe_file.close();
     data_file.close();
